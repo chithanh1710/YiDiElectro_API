@@ -11,7 +11,6 @@ export const carApi = createApi({
   reducerPath: "carApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://yidielectro-api-be.onrender.com/api/v1",
-    mode: "no-cors",
   }),
   endpoints: (builder) => ({
     getCarByType: builder.query<dataCarApi, string>({
