@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* ************************* Container default ************************* */
+  .container-width {
+    @apply lg:px-12 lg:py-8 px-6 py-8;
+  }
+
+  .max-width-default {
+    @apply max-w-[1200px];
+  }
+
+  .divLabel {
+    @apply flex md:flex-col flex-row md:items-start items-center gap-1;
+  }
+
+  .divInput {
+    @apply border w-full outline-none border-gray-400 rounded-lg px-4 py-1 text-black;
+  }
+
+  /* ************************* reviewItem ************************* */
+  .reviewItem:hover {
+    @apply bg-blue-950 transition-all duration-500 scale-105;
+  }
+
+  .reviewItem:hover * {
+    @apply transition-all duration-500;
+  }
+
+  .reviewItem:hover h3,
+  .reviewItem:hover p {
+    @apply text-white;
+  }
+
+  .reviewItem:hover span {
+    @apply bg-yellow-400;
+  }
+
+  /* ************************* ItemFeatureLuxuryCar ************************* */
+
+  .ItemFeatureLuxuryCar * {
+    transition: all 0.3s;
+  }
+
+  .ItemFeatureLuxuryCar:hover img {
+    @apply -translate-y-2 -translate-x-2 scale-105;
+  }
+
+  .ItemFeatureLuxuryCar:hover p {
+    @apply text-yellow-400;
+  }
+
+  .ItemFeatureLuxuryCar:hover button {
+    @apply bg-blue-500 scale-125 -translate-x-1 -translate-y-1;
+  }
+
+  /* ********************************* turn off mouse events ********************************* */
+
+  #home * {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  #navBar * {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* ********************************* Menu component ********************************* */
+
+  .menu a {
+    padding: 12px 12px;
+    cursor: pointer;
+  }
+
+  .menu a:hover:not(:last-child) {
+    background-color: gainsboro;
+  }
+
+  /* ********************************* PAGE About ********************************* */
+
+  .aboutContent::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .aboutContent h1 {
+    @apply text-yellow-400 font-semibold tracking-wider mb-10;
+  }
+
+  .aboutContent h2 {
+    @apply font-medium text-4xl mb-5;
+  }
+
+  .aboutContent p:not(:last-child) {
+    @apply text-gray-300 mb-10;
+  }
+  /* ********************************* productDetailCheckout ********************************* */
+
+  .productDetailCheckout::-webkit-scrollbar {
+    scrollbar-width: thin;
+    width: 10px;
+  }
+
+  .productDetailCheckout::-webkit-scrollbar-thumb {
+    @apply bg-yellow-400 rounded-md border-none;
+  }
+
+  .productDetailCheckout::-webkit-scrollbar-track {
+    @apply bg-gray-100 border-none;
+  }
+
+  /* ********************************* popularProductsAnimation ********************************* */
+  .popularProducts .swiper-slide-active .image {
+    @apply opacity-100 scale-100;
+  }
+
+  .popularProducts .swiper-slide-active .content {
+    @apply opacity-100 scale-100;
+  }
+
+  .popularProducts .swiper-pagination-bullet-active {
+    @apply transition-all duration-300;
+    background: rgb(250, 204, 21) !important;
+  }
+
+  /* ********************************* ClientReviewsAnimation ********************************* */
+  .ClientReviews .swiper-slide-active .content {
+    @apply shadow-xl opacity-100 scale-100;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .ClientReviews .swiper-pagination-bullet-active {
+    transition: all 300ms;
+    background: rgb(250, 204, 21) !important;
+  }
+
+  /* ************************* Animation ************************* */
+  .inLeftAnimation {
+    animation: inLeft 5s ease infinite;
+  }
+
+  .fade {
+    animation: fade 1s linear infinite;
+  }
+
+  .inTopAnimation {
+    animation: inTop 1s ease;
+  }
+
+  .scaleAnimation {
+    animation: scale 0.5s ease;
+  }
+
+  .shadowAnimation {
+    animation: shadow 2s ease infinite;
+  }
+}
+
+/* ********************************* keyframes animation ********************************* */
+
+@keyframes shadow {
+  from {
+    transform: scale(1);
+    box-shadow: 0 0 12px rgba(250, 204, 21, 0.3),
+      inset 0 0 6px rgba(250, 204, 21, 0.3);
+  }
+  to {
+    transform: scale(1.05);
+    box-shadow: 0 0 24px rgba(250, 204, 21, 1),
+      inset 0 0 12px rgba(250, 204, 21, 1);
+  }
+}
+
+@keyframes scale {
+  from {
+    transform: scale(0.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes inTop {
+  from {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes inLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+/* //////////////////// LOADING //////////////////////// */
+
+.classic-3 {
+  font-weight: bold;
+  font-size: 30px;
+  padding: 0 5px 8px 0;
+  background: repeating-linear-gradient(90deg, currentColor 0 8%, #0000 0 10%)
+    200% 100%/200% 3px no-repeat;
+  animation: c3 2s steps(6) infinite;
+}
+@keyframes c3 {
+  to {
+    background-position: 80% 100%;
+  }
+}
