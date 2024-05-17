@@ -9,7 +9,9 @@ interface dataCarApi {
 
 export const carApi = createApi({
   reducerPath: "carApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api/v1" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://yidielectro-api-be.onrender.com/api/v1",
+  }),
   endpoints: (builder) => ({
     getCarByType: builder.query<dataCarApi, string>({
       query: (type) => `cars/${type}`,
