@@ -19,7 +19,7 @@ export default function Err() {
       <div className="w-[600px] bg-red-600 h-[300px] text-default p-8 space-y-4 rounded-lg">
         <h1 className="text-center text-4xl font-bold">Error</h1>
         <h1>Something went wrong 😢</h1>
-        <p>{err.data || err.message}</p>
+        <p>{err?.data || err?.message || 404}</p>
         <button
           onClick={() => navigate("/")}
           className="flex items-center gap-4 p-2 bg-default text-gray-600 rounded-full pl-6"

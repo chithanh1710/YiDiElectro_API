@@ -3,17 +3,13 @@ import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
 import { Link } from "react-router-dom";
 import { useGetFullCarQuery } from "../../rtk-query/carApi";
-import Err from "../../pages/Err";
 
 export function Search() {
   const [search, setSearch] = useState("");
   const isEnglish = useSelector(
     (store: storeProps) => store.app.lang === "English"
   );
-  const { data, isError } = useGetFullCarQuery("");
-  if (isError) {
-    return <Err />;
-  }
+  const { data } = useGetFullCarQuery("");
   if (!data?.data) {
     return null;
   }

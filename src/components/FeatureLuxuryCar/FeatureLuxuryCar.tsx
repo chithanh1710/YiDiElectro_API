@@ -4,14 +4,10 @@ import { ListFeatureLuxuryCar } from "./ListFeatureLuxuryCar";
 import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
 import { useGetCarByTypeQuery } from "../../rtk-query/carApi";
-import Err from "../../pages/Err";
 export function FeatureLuxuryCar() {
   const [logo, setLogo] = useState("All");
   const lang = useSelector((store: storeProps) => store.app.lang);
-  const { data, isError } = useGetCarByTypeQuery("feature");
-  if (isError) {
-    return <Err />;
-  }
+  const { data } = useGetCarByTypeQuery("feature");
   if (!data?.data) {
     return null;
   }

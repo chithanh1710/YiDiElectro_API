@@ -5,18 +5,15 @@ import { useSelector } from "react-redux";
 import { storeProps } from "../store";
 import { getDataPageProduct } from "./productSlide";
 import { useGetFullCarQuery } from "../rtk-query/carApi";
-import Err from "./Err";
 import { IKContext, IKImage } from "imagekitio-react";
 
 export default function Products() {
   const optionProduct = useSelector((store: storeProps) => store.product);
-  const { data, isError } = useGetFullCarQuery("");
-  if (isError) {
-    return <Err />;
-  }
+  const { data } = useGetFullCarQuery("");
   if (!data?.data) {
     return null;
   }
+
   return (
     <div className="w-full lg:px-12 px-6 py-32 bg-gray-800 text-white">
       <div className="max-w-[1300px] mx-auto">

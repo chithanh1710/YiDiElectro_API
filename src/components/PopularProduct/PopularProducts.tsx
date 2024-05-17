@@ -4,15 +4,14 @@ import SlideAnimation from "../Animations/SlideAnimation";
 import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
 import { useGetCarByTypeQuery } from "../../rtk-query/carApi";
-import Err from "../../pages/Err";
 
 export function PopularProducts() {
   const lang = useSelector((store: storeProps) => store.app.lang);
-  const { data, error } = useGetCarByTypeQuery("popular");
-  if (error) {
-    return <Err />;
+  const { data } = useGetCarByTypeQuery("popular");
+  console.log(data);
+  if (!data?.data) {
+    return null;
   }
-
   return (
     <div className="container-width popularProducts">
       <h1 className="left-1/2 -translate-x-1/2 py-10 text-4xl inline-block font-medium relative">
