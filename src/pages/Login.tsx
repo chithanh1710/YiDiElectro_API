@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { listImg } from "../assets/assets";
 import { Eye, EyeOff } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLoggedTrue } from "../layouts/User/AppSlice";
@@ -28,7 +27,7 @@ export default function Login() {
   return (
     <div
       style={{
-        backgroundImage: `url(${listImg.img2})`,
+        backgroundImage: `url(https://ik.imagekit.io/yidiElectro/image2.webp)`,
       }}
       className="w-full lg:px-12 px-6 py-32 bg-cover bg-no-repeat"
     >

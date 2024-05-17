@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import { listIcon, listImg } from "../assets/assets";
+import { listIcon } from "../assets/assets";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -82,7 +82,11 @@ export default function LoginAdmin() {
             </form>
           </div>
           <div className="w-[60%] bg-gray-100 flex justify-center items-center max-sm:hidden">
-            <img className="w-[80%] h-auto" src={listImg.login} alt="" />
+            <img
+              className="w-[80%] h-auto"
+              src="https://ik.imagekit.io/yidiElectro/login.png"
+              alt=""
+            />
           </div>
         </div>
       </div>
