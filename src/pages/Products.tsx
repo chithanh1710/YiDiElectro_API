@@ -6,12 +6,13 @@ import { storeProps } from "../store";
 import { getDataPageProduct } from "./productSlide";
 import { useGetFullCarQuery } from "../rtk-query/carApi";
 import { IKContext, IKImage } from "imagekitio-react";
+import { SkeletonFLC } from "../components/FeatureLuxuryCar/SkeletonFLC";
 
 export default function Products() {
   const optionProduct = useSelector((store: storeProps) => store.product);
-  const { data } = useGetFullCarQuery("");
-  if (!data?.data) {
-    return null;
+  const { data, isLoading, isError } = useGetFullCarQuery("");
+  if (isError) {
+    throw new Error("ERR 404 💥");
   }
 
   return (
@@ -25,10 +26,23 @@ export default function Products() {
               <NavProduct />
             </div>
             <div className="w-full sm:pl-6">
-              <ListFeatureLuxuryCar
-                data={getDataPageProduct(data.data, optionProduct)}
-                logo="All"
-              />
+              {!isLoading ? (
+                <ListFeatureLuxuryCar
+                  data={getDataPageProduct(data?.data || [], optionProduct)}
+                  logo="All"
+                />
+              ) : (
+                <div
+                  className={`grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-10`}
+                >
+                  <SkeletonFLC />
+                  <SkeletonFLC />
+                  <SkeletonFLC />
+                  <SkeletonFLC />
+                  <SkeletonFLC />
+                  <SkeletonFLC />
+                </div>
+              )}
             </div>
           </div>
         </div>

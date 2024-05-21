@@ -17,6 +17,9 @@ export default function AppLayout() {
   const navRef = useRef<HTMLElement>(null);
   const buttonArrRef = useRef<HTMLButtonElement>(null);
   const isSummit = useSelector((store: storeProps) => store.app.isSummit);
+  const loadingSummit = useSelector(
+    (store: storeProps) => store.app.loadingSummit
+  );
 
   useEffect(() => {
     const isLogged = sessionStorage.getItem("isLogged");
@@ -58,10 +61,19 @@ export default function AppLayout() {
               <Footer />
             </>
           )}
-          {isSummit && <SummitForm />}
+          {loadingSummit && <SummitLoading />}
+          {!loadingSummit && isSummit && <SummitForm />}
           <ButtonArr buttonArrRef={buttonArrRef} />
         </>
       )}
     </>
+  );
+}
+
+function SummitLoading() {
+  return (
+    <div className="fixed z-[99999999] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-60 flex justify-center items-center bg-black text-white font-semibold text-2xl rounded-lg">
+      <div className="classic-3">YiDi-Electro</div>
+    </div>
   );
 }

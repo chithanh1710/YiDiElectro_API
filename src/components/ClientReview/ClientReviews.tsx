@@ -1,12 +1,21 @@
 import SlideAnimation from "../Animations/SlideAnimation";
 import { SwiperSlide } from "swiper/react";
-import dataClientReview from "../../data/dataClientReview";
 import { ClientReviewsItem } from "./ClientReviewsItem";
 import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
+import { useGetFullUserQuery } from "../../rtk-query/carApi";
+import { SkeletonCRV } from "./SkeletonCRV";
 
 export function ClientReviews() {
   const lang = useSelector((store: storeProps) => store.app.lang);
+  const { data, isLoading, isError } = useGetFullUserQuery("");
+
+  const dataClientReview = data?.data || [];
+
+  if (isError) {
+    throw new Error("Err 404 💥");
+  }
+
   return (
     <div className="container-width ClientReviews mb-10  ">
       <h1 className="left-1/2 -translate-x-1/2 py-10 text-4xl inline-block font-medium relative">
@@ -16,13 +25,23 @@ export function ClientReviews() {
           className="w-[8.7rem] -z-10 h-3 bg-yellow-400 absolute bottom-[2.6rem] right-0"
         ></div>
       </h1>
-      <SlideAnimation>
-        {dataClientReview.map((item) => (
-          <SwiperSlide className="text-center w-[30rem]" key={item.name}>
-            <ClientReviewsItem item={item} />
-          </SwiperSlide>
-        ))}
-      </SlideAnimation>
+      {!isLoading ? (
+        <SlideAnimation>
+          {dataClientReview.map((item) => (
+            <SwiperSlide className="text-center w-[30rem]" key={item.name}>
+              <ClientReviewsItem item={item} />
+            </SwiperSlide>
+          ))}
+        </SlideAnimation>
+      ) : (
+        <SlideAnimation>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <SwiperSlide key={i}>
+              <SkeletonCRV />
+            </SwiperSlide>
+          ))}
+        </SlideAnimation>
+      )}
     </div>
   );
 }

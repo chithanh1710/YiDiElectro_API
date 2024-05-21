@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface appStoreProps {
   name: string;
   isSummit: boolean;
+  loadingSummit: boolean;
   lang: string;
   isLogged: boolean;
 }
@@ -10,6 +11,7 @@ export interface appStoreProps {
 const initialState: appStoreProps = {
   name: "",
   isSummit: false,
+  loadingSummit: false,
   lang: "English",
   isLogged: false,
 };
@@ -18,6 +20,12 @@ const AppSlice = createSlice({
   initialState,
   name: "app",
   reducers: {
+    setLoadingSummitTrue(state) {
+      state.loadingSummit = true;
+    },
+    setLoadingSummitFalse(state) {
+      state.loadingSummit = false;
+    },
     outSummit(state) {
       state.isSummit = false;
     },
@@ -48,6 +56,8 @@ export const {
   setLang,
   setIsLoggedFalse,
   setIsLoggedTrue,
+  setLoadingSummitFalse,
+  setLoadingSummitTrue,
 } = AppSlice.actions;
 
 export default AppSlice.reducer;

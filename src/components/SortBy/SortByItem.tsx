@@ -2,20 +2,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataPageProduct, updateSortBy } from "../../pages/productSlide";
 import { storeProps } from "../../store";
 import { useGetFullCarQuery } from "../../rtk-query/carApi";
-import Err from "../../pages/Err";
 
 export function SortByItem() {
   const dispatch = useDispatch();
   const optionProduct = useSelector((store: storeProps) => store.product);
   const lang = useSelector((store: storeProps) => store.app.lang);
   const { data, isError } = useGetFullCarQuery("");
+
   if (isError) {
-    return <Err />;
+    throw new Error("ERR 404 💥");
   }
-  if (!data?.data) {
-    return null;
-  }
-  const length = getDataPageProduct(data.data, optionProduct).length;
+
+  const length = getDataPageProduct(data?.data || [], optionProduct).length;
 
   return (
     <div className="justify-between items-center flex mb-6">

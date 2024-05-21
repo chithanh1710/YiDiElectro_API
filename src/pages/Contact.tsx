@@ -1,11 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { setIsSubmit, setName } from "../layouts/User/AppSlice";
+import {
+  setIsSubmit,
+  setLoadingSummitFalse,
+  setLoadingSummitTrue,
+  setName,
+} from "../layouts/User/AppSlice";
 import { storeProps } from "../store";
 
 export default function Contact() {
   const dispatch = useDispatch();
   const [newName, setNewName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [mess, setMess] = useState("");
   const lang = useSelector((store: storeProps) => store.app.lang);
   const isEnglish = lang === "English";
   return (
@@ -37,8 +45,32 @@ export default function Contact() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            dispatch(setLoadingSummitTrue());
             dispatch(setIsSubmit());
             dispatch(setName(newName));
+            // Send Email
+            fetch(`http://localhost:3000/send-email/${email}?name=${newName}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((response) => response.json())
+              .then(() => {
+                console.log("Email sent successfully");
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              })
+              .finally(() => {
+                dispatch(setLoadingSummitFalse());
+              });
+            // clear form
+            setEmail("");
+            setMess("");
+            setName("");
+            setNewName("");
+            setPhone("");
           }}
           className="w-full h-[60%] bg-gray-700 md:w-[60%] md:h-full px-8 pb-10"
         >
@@ -71,6 +103,8 @@ export default function Contact() {
                   className="divInput"
                   id="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="example@gmail.com"
                   required
                 />
@@ -82,6 +116,8 @@ export default function Contact() {
                 <input
                   className="divInput"
                   type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   placeholder="xxx-xxxx-xxxx"
                   required
                 />
@@ -92,6 +128,8 @@ export default function Contact() {
                 {isEnglish ? "Message" : "Lời nhắn"}
               </label>
               <textarea
+                value={mess}
+                onChange={(e) => setMess(e.target.value)}
                 className="border outline-none md:h-full h-[160px] rounded-lg px-4 py-1 text-black"
                 placeholder="Message..."
               />
