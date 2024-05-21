@@ -41,7 +41,7 @@ export function ContactUs() {
               dispatch(setName(newName));
               // Send Email
               fetch(
-                `http://localhost:3000/send-email/${email}?name=${newName}`,
+                `https://yidielectro-api-be.onrender.com/send-email/${email}?name=${newName}`,
                 {
                   method: "POST",
                   headers: {

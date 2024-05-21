@@ -49,12 +49,15 @@ export default function Contact() {
             dispatch(setIsSubmit());
             dispatch(setName(newName));
             // Send Email
-            fetch(`http://localhost:3000/send-email/${email}?name=${newName}`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            })
+            fetch(
+              `https://yidielectro-api-be.onrender.com/send-email/${email}?name=${newName}`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            )
               .then((response) => response.json())
               .then(() => {
                 console.log("Email sent successfully");
