@@ -56,7 +56,6 @@ export function MenuNavbar({
                 left: 0,
                 behavior: "smooth",
               });
-              console.log(window.location.pathname);
             }}
             to="products"
             className={`flex justify-between items-center ${

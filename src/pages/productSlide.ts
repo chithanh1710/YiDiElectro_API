@@ -69,7 +69,6 @@ export const getDataPageProduct = (
   optionProduct: productStoreProps
 ) => {
   const dataOption = dataAll.slice();
-  console.log(dataOption);
   return dataOption
     .sort((a, b) => {
       if (optionProduct.sortBy === "high") {
