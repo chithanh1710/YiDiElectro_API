@@ -33,7 +33,6 @@ export default function ProductId() {
       behavior: "smooth",
     });
   }
-
   return (
     <div className="w-full lg:px-12 px-6 py-32 bg-gray-800 text-white">
       <div className="max-w-[1300px] mx-auto">
@@ -53,11 +52,7 @@ export default function ProductId() {
             urlEndpoint="https://ik.imagekit.io/yidiElectro"
             transformationPosition="path"
           >
-            <IKImage
-              path={data.img}
-              loading="lazy"
-              lqip={{ active: true, quality: 20, blur: 10 }}
-            />
+            <IKImage path={data.img} />
           </IKContext>
         </div>
         <div className="mt-5 flex justify-between max-w-[500px] mx-auto">
