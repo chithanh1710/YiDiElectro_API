@@ -7,6 +7,7 @@ import {
   setName,
 } from "../layouts/User/AppSlice";
 import { storeProps } from "../store";
+import { URL_SERVER } from "../base/base";
 
 export default function Contact() {
   const dispatch = useDispatch();
@@ -49,15 +50,12 @@ export default function Contact() {
             dispatch(setIsSubmit());
             dispatch(setName(newName));
             // Send Email
-            fetch(
-              `https://yidielectro-api-be.onrender.com/send-email/${email}?name=${newName}`,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            )
+            fetch(`${URL_SERVER}/send-email/${email}?name=${newName}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
               .then((response) => response.json())
               .then(() => {
                 console.log("Email sent successfully");

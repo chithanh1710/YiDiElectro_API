@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { dataPopularProductsProps } from "../data/interfaceDataCar";
 import { dataClientReviewProps } from "../data/interfaceDataClientReview";
+import { URL_SERVER } from "../base/base";
 
 interface dataCarApi {
   result: number;
@@ -17,7 +18,7 @@ interface dataUserApi {
 export const carApi = createApi({
   reducerPath: "carApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://yidielectro-api-be.onrender.com/api/v1",
+    baseUrl: `${URL_SERVER}/api/v1`,
   }),
   endpoints: (builder) => ({
     getCarByType: builder.query<dataCarApi, string>({
