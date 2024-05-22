@@ -33,7 +33,7 @@ export default function Contact() {
             <span className="text-white font-semibold text-4xl tracking-wider">
               Email:
             </span>{" "}
-            yidi@gmail.com
+            yidielectro@gmail.com
           </p>
           <p className="text-yellow-400 text-3xl">
             <span className="text-white font-semibold text-4xl tracking-wider">
