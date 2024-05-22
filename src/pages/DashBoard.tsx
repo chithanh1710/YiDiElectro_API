@@ -6,6 +6,12 @@ export default function DashBoard() {
   if (!isAdminLogin) {
     return <Navigate to="/admin/login" replace />;
   } else {
-    return <h1>Dashboard</h1>;
+    return (
+      <iframe
+        src="https://yidielectro-api-be.onrender.com/"
+        frameBorder="0"
+        className="w-full h-screen"
+      ></iframe>
+    );
   }
 }
