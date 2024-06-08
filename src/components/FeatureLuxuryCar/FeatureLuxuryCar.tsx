@@ -3,7 +3,7 @@ import { ListLogo } from "./ListLogo";
 import { ListFeatureLuxuryCar } from "./ListFeatureLuxuryCar";
 import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
-import { useGetCarByTypeQuery } from "../../rtk-query/carApi";
+import { useGetCarByTypeQuery } from "../../services/carApi";
 import { SkeletonFLC } from "./SkeletonFLC";
 import dataDefault from "./dataDefaultFLC";
 export function FeatureLuxuryCar() {

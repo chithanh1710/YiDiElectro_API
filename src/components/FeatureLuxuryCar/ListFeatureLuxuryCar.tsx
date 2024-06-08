@@ -1,4 +1,4 @@
-import { dataPopularProductsProps } from "../../data/interfaceDataCar";
+import { dataPopularProductsProps } from "../../interface/interfaceDataCar";
 import { ItemFeatureLuxuryCar } from "./ItemFeatureLuxuryCar";
 
 export function ListFeatureLuxuryCar({

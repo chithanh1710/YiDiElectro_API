@@ -3,7 +3,7 @@ import { PopularProductItem } from "./PopularProductItem";
 import SlideAnimation from "../Animations/SlideAnimation";
 import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
-import { useGetCarByTypeQuery } from "../../rtk-query/carApi";
+import { useGetCarByTypeQuery } from "../../services/carApi";
 import { SkeletonPPD } from "./SkeletonPPD";
 
 export function PopularProducts() {

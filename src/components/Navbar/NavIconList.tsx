@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setIsLoggedFalse, setLang } from "../../layouts/User/AppSlice";
 import { storeProps } from "../../store";
+import IconTesla from "../../assets/Tesla_T_symbol.svg.png";
 
 export function NavIconList() {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ export function NavIconList() {
               setShowLogout((prev) => !prev);
             }}
             className="h-full w-full object-cover rounded-full"
-            src="https://plus.unsplash.com/premium_photo-1664533227571-cb18551cac82?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbnxlbnwwfHwwfHx8MA%3D%3D"
+            src={IconTesla}
             alt=""
           />
 

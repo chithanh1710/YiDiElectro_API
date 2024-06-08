@@ -1,164 +1,182 @@
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { propsSignIn } from "../interface/propsSignIn";
+import Loading from "../components/Loading/Loading";
+import { useCreateUser } from "../customHook/useCreateUser";
+import { useCheckUser } from "../customHook/checkUser";
 import { Eye, EyeOff } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsLoggedTrue } from "../layouts/User/AppSlice";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { storeProps } from "../store";
-
-const accountDEMO = {
-  email: "yidiElectro@gmail.com",
-  pass: "yidiElectro123",
-};
+import { Navigate } from "react-router-dom";
 
 export default function Login() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [isSignIn, setIsSignIn] = useState(true);
-  const [isShowPass, setIsShowPass] = useState(false);
-  const [isShowConfirmPass, setIsShowConfirmPass] = useState(false);
-  const [pass, setPass] = useState("");
-  const [email, setEmail] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    // reset,
+    getValues,
+  } = useForm<propsSignIn>();
+  const [isLogin, setIsLogin] = useState(false);
+  const [isShow1, setIsShow1] = useState(false);
+  const [isShow2, setIsShow2] = useState(false);
+  const { checkUser, isCheck } = useCheckUser();
+  const { createNewUser, isCreate } = useCreateUser(checkUser);
+
+  const onSubmit: SubmitHandler<propsSignIn> = (data) => {
+    if (isLogin) {
+      checkUser(data);
+    } else {
+      createNewUser(data);
+    }
+  };
+
   const isLogged = useSelector((store: storeProps) => store.app.isLogged);
 
   if (isLogged) {
     return <Navigate to="/app" replace />;
   }
 
+  if (isCheck || isCreate) {
+    return <Loading />;
+  }
+
   return (
     <div
       style={{
-        backgroundImage: `url(https://ik.imagekit.io/yidiElectro/image2.webp)`,
+        backgroundImage: "url(https://ik.imagekit.io/yidiElectro/image1.webp)",
       }}
-      className="w-full lg:px-12 px-6 py-32 bg-cover bg-no-repeat"
+      className="w-full flex min-h-screen justify-center items-center py-20 px-4"
     >
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (isSignIn) {
-            if (accountDEMO.email === email && accountDEMO.pass === pass) {
-              dispatch(setIsLoggedTrue());
-              navigate("/app", { replace: true });
-            }
-          }
-        }}
-        className="max-w-[600px] rounded-2xl mx-auto bg-white px-6 py-6 text-black"
-      >
-        <h1 className="text-yellow-400 font-semibold text-2xl text-center">
-          {isSignIn ? "Login to your account" : "Sign Up"}
-        </h1>
-        {!isSignIn && (
-          <div className={`flex flex-col mt-6`}>
-            <label
-              className="text-gray-400 text-sm font-semibold mb-1"
-              htmlFor="userName"
-            >
-              Username
-            </label>
+      <form onSubmit={handleSubmit(onSubmit)} className="form-login">
+        <h2 className="text-3xl text-yellow-400 font-bold ">
+          {isLogin ? "Login" : "Sign up"}
+        </h2>
+        {!isLogin && (
+          <div>
+            <label htmlFor="username">Username</label>
             <input
-              className="bg-white outline-none border-b border-b-gray-300"
               type="text"
-              id="userName"
+              id="username"
               placeholder="Chi Thanh"
-              required
+              className={`${errors.username ? "border-2 border-red-600" : ""}`}
+              {...register("username", { required: "This field is required" })}
             />
+            {errors.username && <p>{errors.username.message?.toString()}</p>}
           </div>
         )}
-        <div className="flex flex-col mt-6">
-          <label
-            className="text-gray-400 text-sm font-semibold mb-1"
-            htmlFor="email"
-          >
-            Email
-          </label>
+        <div>
+          <label htmlFor="email">Email</label>
           <input
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-white outline-none border-b border-b-gray-300"
             type="email"
             id="email"
-            name="email"
             placeholder="example@gmail.com"
-            required
+            className={`${errors.email ? "border-2 border-red-600" : ""}`}
+            {...register("email", {
+              required: "This field is required",
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: "Email invalidate",
+              },
+            })}
           />
+          {errors.email && <p>{errors.email.message?.toString()}</p>}
         </div>
-        <div className="flex flex-col mt-6">
-          <label
-            className="text-gray-400 text-sm font-semibold mb-1"
-            htmlFor="pass"
-          >
-            Password
-          </label>
-          <div className="relative w-full">
-            <input
-              onChange={(e) => setPass(e.target.value)}
-              className="bg-white w-full outline-none border-b border-b-gray-300"
-              type={isShowPass ? "text" : "password"}
-              placeholder="**********"
-              id="pass"
-              name="email"
-              required
+        <div className="relative">
+          <label htmlFor="password">Password</label>
+          <input
+            type={isShow1 ? "text" : "password"}
+            id="password"
+            placeholder="Example123@"
+            className={`${errors.password ? "border-2 border-red-600" : ""}`}
+            {...register("password", {
+              required: "This field is required",
+              pattern: {
+                value:
+                  /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?]).{11,}$/,
+                message:
+                  "Password must be longer than 10 characters and contain 1 uppercase character and 1 special character",
+              },
+            })}
+          />
+          {isShow1 ? (
+            <EyeOff
+              onClick={() => setIsShow1((is) => !is)}
+              className="absolute right-3 top-1/2 translate-y-1 cursor-pointer text-gray-400"
             />
-            <i
-              onClick={() => {
-                setIsShowPass((prev) => !prev);
-              }}
-              className="absolute top-0 right-0 cursor-pointer text-gray-400"
-            >
-              {isShowPass ? <EyeOff /> : <Eye />}
-            </i>
-          </div>
+          ) : (
+            <Eye
+              onClick={() => setIsShow1((is) => !is)}
+              className="absolute right-3 top-1/2 translate-y-1 cursor-pointer text-gray-400"
+            />
+          )}
+          {errors.password && <p>{errors.password.message?.toString()}</p>}
         </div>
-        {!isSignIn && (
-          <div className={`flex flex-col mt-6`}>
-            <label
-              className="text-gray-400 text-sm font-semibold mb-1"
-              htmlFor="pass"
-            >
-              Confirm password
-            </label>
-            <div className="relative w-full">
-              <input
-                className="bg-white w-full outline-none border-b border-b-gray-300"
-                type={isShowConfirmPass ? "text" : "password"}
-                placeholder="**********"
-                id="confirmPass"
-                required
+        {!isLogin && (
+          <div className="relative">
+            <label htmlFor="confirmPassword">Confirm password</label>
+            <input
+              type={isShow2 ? "text" : "password"}
+              id="confirmPassword"
+              placeholder="***********"
+              className={`${
+                errors.confirmPassword ? "border-2 border-red-600" : ""
+              }`}
+              {...register("confirmPassword", {
+                required: "Please confirm your password again",
+                validate: (value: string) =>
+                  getValues().password === value || "Incorrect password",
+              })}
+            />
+            {isShow2 ? (
+              <EyeOff
+                onClick={() => setIsShow2((is) => !is)}
+                className="absolute right-3 top-1/2 translate-y-1 cursor-pointer text-gray-400"
               />
-              <i
-                onClick={() => {
-                  setIsShowConfirmPass((prev) => !prev);
-                }}
-                className="absolute top-0 right-0 cursor-pointer text-gray-400"
-              >
-                {isShowConfirmPass ? <EyeOff /> : <Eye />}
-              </i>
-            </div>
+            ) : (
+              <Eye
+                onClick={() => setIsShow2((is) => !is)}
+                className="absolute right-3 top-1/2 translate-y-1 cursor-pointer text-gray-400"
+              />
+            )}
+            {errors.confirmPassword && (
+              <p>{errors.confirmPassword.message?.toString()}</p>
+            )}
           </div>
         )}
-        <div className="flex justify-between gap-2 mt-6">
-          <div className="flex items-center gap-1">
-            <input id="remember" type="checkbox" />
-            <label htmlFor="remember">
-              {isSignIn
-                ? "Remember me"
+        <div
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ flexDirection: "row" }}>
+            <input id="check" type="checkbox" />
+            <label style={{ fontSize: "14px" }} htmlFor="check">
+              {isLogin
+                ? "Remember"
                 : "By continuing, i agree to the terms of use & privacy policy"}
             </label>
           </div>
-          <p className={`${isSignIn ? "" : "hidden"}`}>Forgot your password?</p>
+          {isLogin && (
+            <span className="cursor-pointer text-xs font-bold text-gray-400 border-b-2 transition-all border-gray-400 hover:text-gray-600 hover:border-gray-600">
+              Forgot your password?
+            </span>
+          )}
         </div>
-        <button className="mt-6 w-full px-6 py-3 bg-yellow-400 font-bold rounded-lg">
-          {isSignIn ? "Login" : "Create account"}
-        </button>
-        <p className="text-gray-400 text-center mt-6">
-          {isSignIn
-            ? " Don't have an account yet? "
+        <button>{isLogin ? "Login" : "Create account"}</button>
+        <p className="text-center text-sm text-gray-400 font-medium">
+          {isLogin
+            ? "Don't have an account yet? "
             : "Already have an account? "}
           <span
             onClick={() => {
-              setIsSignIn((prev) => !prev);
+              setIsLogin(!isLogin);
             }}
-            className="text-black font-medium cursor-pointer border-b-2 border-black"
+            className="cursor-pointer font-bold text-black border-b-2 border-black"
           >
-            {isSignIn ? "Sign Up " : "Login here"}
+            {isLogin ? "Sign up" : "Login here"}
           </span>
         </p>
       </form>

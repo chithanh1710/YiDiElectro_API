@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { dataPopularProductsProps } from "../data/interfaceDataCar";
-import { dataClientReviewProps } from "../data/interfaceDataClientReview";
+import { dataPopularProductsProps } from "../interface/interfaceDataCar";
+import { dataClientReviewProps } from "../interface/interfaceDataClientReview";
 import { URL_SERVER } from "../base/base";
 
 interface dataCarApi {

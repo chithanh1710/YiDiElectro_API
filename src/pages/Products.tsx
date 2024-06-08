@@ -4,7 +4,7 @@ import { SortByItem } from "../components/SortBy/SortByItem";
 import { useSelector } from "react-redux";
 import { storeProps } from "../store";
 import { getDataPageProduct } from "./productSlide";
-import { useGetFullCarQuery } from "../rtk-query/carApi";
+import { useGetFullCarQuery } from "../services/carApi";
 import { IKContext, IKImage } from "imagekitio-react";
 import { SkeletonFLC } from "../components/FeatureLuxuryCar/SkeletonFLC";
 

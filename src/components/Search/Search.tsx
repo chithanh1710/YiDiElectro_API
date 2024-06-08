@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
 import { Link } from "react-router-dom";
-import { useGetFullCarQuery } from "../../rtk-query/carApi";
+import { useGetFullCarQuery } from "../../services/carApi";
 
 export function Search() {
   const [search, setSearch] = useState("");

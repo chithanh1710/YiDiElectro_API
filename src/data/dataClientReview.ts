@@ -1,4 +1,4 @@
-import { dataClientReviewProps } from "./interfaceDataClientReview";
+import { dataClientReviewProps } from "../interface/interfaceDataClientReview";
 
 const dataClientReview: dataClientReviewProps[] = [
   {

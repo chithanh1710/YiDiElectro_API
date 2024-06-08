@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { dataClientReviewProps } from "../../data/interfaceDataClientReview";
+import { dataClientReviewProps } from "../../interface/interfaceDataClientReview";
 import { Star } from "lucide-react";
 import { storeProps } from "../../store";
 

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getDataPageProduct, updateSortBy } from "../../pages/productSlide";
 import { storeProps } from "../../store";
-import { useGetFullCarQuery } from "../../rtk-query/carApi";
+import { useGetFullCarQuery } from "../../services/carApi";
 
 export function SortByItem() {
   const dispatch = useDispatch();

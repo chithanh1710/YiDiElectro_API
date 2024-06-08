@@ -68,6 +68,30 @@
     -webkit-user-drag: none;
   }
 
+  /* ********************************* Form component ********************************* */
+
+  .form-login {
+    @apply flex flex-col gap-6 bg-slate-100 md:max-w-[600px] w-[600px] rounded-lg px-6 py-12;
+  }
+  .form-login h2 {
+    @apply text-center;
+  }
+  .form-login div p {
+    @apply text-red-600;
+  }
+  .form-login div {
+    @apply flex flex-col gap-2;
+  }
+  .form-login div label {
+    @apply text-lg font-medium;
+  }
+  .form-login div input {
+    @apply px-4 py-2 rounded;
+  }
+  .form-login button {
+    @apply bg-yellow-400 py-3 rounded text-lg font-semibold;
+  }
+
   /* ********************************* Menu component ********************************* */
 
   .menu a {

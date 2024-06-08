@@ -9,7 +9,7 @@ import { storeProps } from "../store";
 import { ProductDetails } from "../components/ProductDetails/ProductDetails";
 import exchangeRate from "../utils/exchangePrice";
 import { IKContext, IKImage } from "imagekitio-react";
-import { useGetFullCarQuery } from "../rtk-query/carApi";
+import { useGetFullCarQuery } from "../services/carApi";
 import Err from "./Err";
 
 export default function CheckOut() {

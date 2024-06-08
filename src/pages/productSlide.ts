@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { dataPopularProductsProps } from "../data/interfaceDataCar";
+import { dataPopularProductsProps } from "../interface/interfaceDataCar";
 
 export interface productStoreProps {
   brand: string[];

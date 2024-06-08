@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 export interface appStoreProps {
   name: string;
@@ -44,6 +45,7 @@ const AppSlice = createSlice({
     },
     setIsLoggedFalse(state) {
       state.isLogged = false;
+      toast.success("Logout successful");
       sessionStorage.setItem("isLogged", JSON.stringify(false));
     },
   },

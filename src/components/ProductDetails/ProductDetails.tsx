@@ -1,7 +1,7 @@
 import formatCurrency, {
   formatCurrencyVietnamese,
 } from "../../utils/formatCurrency";
-import { dataPopularProductsProps } from "../../data/interfaceDataCar";
+import { dataPopularProductsProps } from "../../interface/interfaceDataCar";
 import { useEffect, useState } from "react";
 import exchangeRate from "../../utils/exchangePrice";
 import { useSelector } from "react-redux";

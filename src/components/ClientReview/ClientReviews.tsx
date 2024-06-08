@@ -3,7 +3,7 @@ import { SwiperSlide } from "swiper/react";
 import { ClientReviewsItem } from "./ClientReviewsItem";
 import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
-import { useGetFullUserQuery } from "../../rtk-query/carApi";
+import { useGetFullUserQuery } from "../../services/carApi";
 import { SkeletonCRV } from "./SkeletonCRV";
 
 export function ClientReviews() {

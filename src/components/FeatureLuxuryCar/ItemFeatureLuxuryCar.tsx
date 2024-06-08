@@ -2,7 +2,7 @@ import { Archive } from "lucide-react";
 import formatCurrency, {
   formatCurrencyVietnamese,
 } from "../../utils/formatCurrency";
-import { dataPopularProductsProps } from "../../data/interfaceDataCar";
+import { dataPopularProductsProps } from "../../interface/interfaceDataCar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";

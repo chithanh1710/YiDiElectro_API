@@ -10,6 +10,7 @@ import { storeProps } from "./store";
 // Layout
 import AppLayout from "./layouts/User/AppLayout";
 import AdminLayout from "./layouts/Admin/AdminLayout";
+import { Toaster } from "react-hot-toast";
 
 // Pages
 const Home = lazy(() => import("./pages/Home"));
@@ -88,6 +89,13 @@ export default function App() {
   return (
     <div className={`${isEnglish ? "font-sans" : "font-body"}`}>
       <RouterProvider router={router} />
+      <div>
+        <Toaster
+          containerStyle={{ zIndex: "99999999999" }}
+          position="bottom-right"
+          reverseOrder={false}
+        />
+      </div>
     </div>
   );
 }

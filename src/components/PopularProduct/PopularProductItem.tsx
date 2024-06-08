@@ -1,5 +1,5 @@
 import { Circle } from "lucide-react";
-import { dataPopularProductsProps } from "../../data/interfaceDataCar";
+import { dataPopularProductsProps } from "../../interface/interfaceDataCar";
 import formatCurrency, {
   formatCurrencyVietnamese,
 } from "../../utils/formatCurrency";
