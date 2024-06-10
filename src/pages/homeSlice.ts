@@ -13,6 +13,7 @@ export interface homeStoreProps {
 const initialState = {
   isPlayVideo: false,
   numDot: 1,
+
   slide: heroSlides.slide1,
 };
 
