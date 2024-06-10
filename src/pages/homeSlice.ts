@@ -5,7 +5,6 @@ export interface homeStoreProps {
   slide: {
     content: string;
     img: string;
-    vid: string;
   };
   isPlayVideo: boolean;
   numDot: number;
@@ -14,7 +13,6 @@ export interface homeStoreProps {
 const initialState = {
   isPlayVideo: false,
   numDot: 1,
-
   slide: heroSlides.slide1,
 };
 

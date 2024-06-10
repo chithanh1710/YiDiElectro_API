@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
 import exchangeRate from "../../utils/exchangePrice";
-import { IKContext, IKImage } from "imagekitio-react";
+import { IKImage } from "imagekitio-react";
 
 export function ItemFeatureLuxuryCar({
   setStyle,
@@ -37,13 +37,7 @@ export function ItemFeatureLuxuryCar({
     >
       <h2 className="font-medium text-2xl">{item.brand}</h2>
       <p className="text-sm text-gray-300">{item.name}</p>
-      <IKContext
-        publicKey="public_POLuSf/Qrn79R+Goy2t0JxWA6XM="
-        urlEndpoint="https://ik.imagekit.io/yidiElectro"
-        transformationPosition="path"
-      >
-        <IKImage path={item.img} className="w-[80%] mx-auto my-6" />
-      </IKContext>
+      <IKImage path={item.img} className="w-[80%] mx-auto my-6" />
       <p className=" mt-auto font-bold text-2xl">
         {lang === "English"
           ? `$${formatCurrency(item.price)}`

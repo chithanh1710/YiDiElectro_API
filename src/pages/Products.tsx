@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { storeProps } from "../store";
 import { getDataPageProduct } from "./productSlide";
 import { useGetFullCarQuery } from "../services/carApi";
-import { IKContext, IKImage } from "imagekitio-react";
+import { IKImage } from "imagekitio-react";
 import { SkeletonFLC } from "../components/FeatureLuxuryCar/SkeletonFLC";
 
 export default function Products() {
@@ -78,18 +78,11 @@ function BoxContent() {
           </p>
         </div>
       )}
-      <IKContext
-        publicKey="public_POLuSf/Qrn79R+Goy2t0JxWA6XM="
-        urlEndpoint="https://ik.imagekit.io/yidiElectro"
-        transformationPosition="path"
-      >
-        <IKImage
-          path="/offer.png"
-          loading="lazy"
-          lqip={{ active: true, quality: 20, blur: 10 }}
-          className="w-[max(34vw,260px)] md:block hidden"
-        />
-      </IKContext>
+      <IKImage
+        path="/offer.png"
+        lqip={{ active: true, quality: 20, blur: 10 }}
+        className="w-[max(34vw,260px)] md:block hidden"
+      />
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { storeProps } from "../../store";
 import { useEffect, useState } from "react";
 import exchangeRate from "../../utils/exchangePrice";
-import { IKContext, IKImage } from "imagekitio-react";
+import { IKImage } from "imagekitio-react";
 
 export function PopularProductItem({
   item,
@@ -25,18 +25,11 @@ export function PopularProductItem({
 
   return (
     <>
-      <IKContext
-        publicKey="public_POLuSf/Qrn79R+Goy2t0JxWA6XM="
-        urlEndpoint="https://ik.imagekit.io/yidiElectro"
-        transformationPosition="path"
-      >
-        <IKImage
-          path={item.img}
-          loading="lazy"
-          lqip={{ active: true, quality: 20, blur: 10 }}
-          className="image md:h-[max(12vw)] h-[30vw] w-auto transition-all duration-700 opacity-50 scale-75 mx-auto"
-        />
-      </IKContext>
+      <IKImage
+        path={item.img}
+        lqip={{ active: true, quality: 20, blur: 10 }}
+        className="image md:h-[max(12vw)] h-[30vw] w-auto transition-all duration-700 opacity-50 scale-75 mx-auto"
+      />
       <div className="content pt-[1rem] opacity-0 scale-[0.25] transition-all duration-700">
         <h3 className="text-lg font-medium">{item.name}</h3>
         <div className="text-3xl py-[1rem] px-0 font-bold text-yellow-400">

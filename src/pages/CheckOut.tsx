@@ -8,7 +8,7 @@ import { setIsSubmit, setName } from "../layouts/User/AppSlice";
 import { storeProps } from "../store";
 import { ProductDetails } from "../components/ProductDetails/ProductDetails";
 import exchangeRate from "../utils/exchangePrice";
-import { IKContext, IKImage } from "imagekitio-react";
+import { IKImage } from "imagekitio-react";
 import { useGetFullCarQuery } from "../services/carApi";
 import Err from "./Err";
 
@@ -70,48 +70,42 @@ export default function CheckOut() {
         >
           <h2>{isEnglish ? "Card Details" : "Loại thẻ"}</h2>
           <div className="flex gap-4 justify-start mt-2">
-            <IKContext
-              publicKey="public_POLuSf/Qrn79R+Goy2t0JxWA6XM="
-              urlEndpoint="https://ik.imagekit.io/yidiElectro"
-              transformationPosition="path"
-            >
-              <IKImage
-                onClick={() => setCard(0)}
-                path="masterCard.png"
-                className={`cursor-pointer lg:h-20 lg:w-auto sm:w-[120px] sm:h-[100px] transition-all duration-300 h-16 w-auto p-2 rounded-md border-2  ${
-                  card === 0
-                    ? "bg-gray-400 border-yellow-400 shadow-md -translate-y-1 scale-105"
-                    : "bg-white border-gray-400"
-                }`}
-              />
-              <IKImage
-                onClick={() => setCard(1)}
-                path="paypal.png"
-                className={`cursor-pointer lg:h-20 lg:w-auto sm:w-[120px] sm:h-[100px] transition-all duration-300 h-16 w-auto p-2 rounded-md border-2  ${
-                  card === 1
-                    ? "bg-gray-400 border-yellow-400 shadow-md -translate-y-1 scale-105"
-                    : "bg-white border-gray-400"
-                }`}
-              />
-              <IKImage
-                onClick={() => setCard(2)}
-                path="visa.png"
-                className={`cursor-pointer lg:h-20 lg:w-auto sm:w-[120px] sm:h-[100px] transition-all duration-300 h-16 w-auto p-2 rounded-md border-2  ${
-                  card === 2
-                    ? "bg-gray-400 border-yellow-400 shadow-md -translate-y-1 scale-105"
-                    : "bg-white border-gray-400"
-                }`}
-              />
-              <IKImage
-                onClick={() => setCard(3)}
-                path="bkash.png"
-                className={`cursor-pointer lg:h-20 lg:w-24 sm:w-[120px] sm:h-[100px] transition-all duration-300 h-16 w-auto p-2 rounded-md border-2  ${
-                  card === 3
-                    ? "bg-gray-400 border-yellow-400 shadow-md -translate-y-1 scale-105"
-                    : "bg-white border-gray-400"
-                }`}
-              />
-            </IKContext>
+            <IKImage
+              onClick={() => setCard(0)}
+              path="masterCard.png"
+              className={`cursor-pointer lg:h-20 lg:w-auto sm:w-[120px] sm:h-[100px] transition-all duration-300 h-16 w-auto p-2 rounded-md border-2  ${
+                card === 0
+                  ? "bg-gray-400 border-yellow-400 shadow-md -translate-y-1 scale-105"
+                  : "bg-white border-gray-400"
+              }`}
+            />
+            <IKImage
+              onClick={() => setCard(1)}
+              path="paypal.png"
+              className={`cursor-pointer lg:h-20 lg:w-auto sm:w-[120px] sm:h-[100px] transition-all duration-300 h-16 w-auto p-2 rounded-md border-2  ${
+                card === 1
+                  ? "bg-gray-400 border-yellow-400 shadow-md -translate-y-1 scale-105"
+                  : "bg-white border-gray-400"
+              }`}
+            />
+            <IKImage
+              onClick={() => setCard(2)}
+              path="visa.png"
+              className={`cursor-pointer lg:h-20 lg:w-auto sm:w-[120px] sm:h-[100px] transition-all duration-300 h-16 w-auto p-2 rounded-md border-2  ${
+                card === 2
+                  ? "bg-gray-400 border-yellow-400 shadow-md -translate-y-1 scale-105"
+                  : "bg-white border-gray-400"
+              }`}
+            />
+            <IKImage
+              onClick={() => setCard(3)}
+              path="bkash.png"
+              className={`cursor-pointer lg:h-20 lg:w-24 sm:w-[120px] sm:h-[100px] transition-all duration-300 h-16 w-auto p-2 rounded-md border-2  ${
+                card === 3
+                  ? "bg-gray-400 border-yellow-400 shadow-md -translate-y-1 scale-105"
+                  : "bg-white border-gray-400"
+              }`}
+            />
           </div>
           <h2 className="mt-4">
             {isEnglish ? "Name on Card" : "Tên trên thẻ"}
@@ -279,13 +273,7 @@ export default function CheckOut() {
               </p>
             </div>
           </div>
-          <IKContext
-            publicKey="public_POLuSf/Qrn79R+Goy2t0JxWA6XM="
-            urlEndpoint="https://ik.imagekit.io/yidiElectro"
-            transformationPosition="path"
-          >
-            <IKImage path={data.img} className="mt-24 mx-auto" />
-          </IKContext>
+          <IKImage path={data.img} className="mt-24 mx-auto" />
           <div className="mt-24 bg-gray-700 px-3 py-6 rounded-lg">
             <ProductDetails data={data} isEnglish={isEnglish} />
           </div>

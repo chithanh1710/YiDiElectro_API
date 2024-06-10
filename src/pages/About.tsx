@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { storeProps } from "../store";
-import { IKContext, IKImage } from "imagekitio-react";
+import { IKImage } from "imagekitio-react";
 
 export default function About() {
   const lang = useSelector((store: storeProps) => store.app.lang);
@@ -48,18 +48,11 @@ export default function About() {
               </p>
             </div>
             <div className="w-full flex justify-center items-center">
-              <IKContext
-                publicKey="public_POLuSf/Qrn79R+Goy2t0JxWA6XM="
-                urlEndpoint="https://ik.imagekit.io/yidiElectro"
-                transformationPosition="path"
-              >
-                <IKImage
-                  path="/image3.webp"
-                  loading="lazy"
-                  lqip={{ active: true, quality: 20, blur: 10 }}
-                  className="rounded-lg mx-auto xl:w-[80%] xl:h-[80%] w-full h-full object-cover"
-                />
-              </IKContext>
+              <IKImage
+                path="/image3.webp"
+                lqip={{ active: true, quality: 20, blur: 10 }}
+                className="rounded-lg mx-auto xl:w-[80%] xl:h-[80%] w-full h-full object-cover"
+              />
             </div>
           </>
         ) : (
@@ -105,18 +98,11 @@ export default function About() {
               </p>
             </div>
             <div className="w-full flex justify-center items-center">
-              <IKContext
-                publicKey="public_POLuSf/Qrn79R+Goy2t0JxWA6XM="
-                urlEndpoint="https://ik.imagekit.io/yidiElectro"
-                transformationPosition="path"
-              >
-                <IKImage
-                  path="/image3.webp"
-                  loading="lazy"
-                  lqip={{ active: true, quality: 20, blur: 10 }}
-                  className="w-[80%] mx-auto my-6"
-                />
-              </IKContext>
+              <IKImage
+                path="/image3.webp"
+                lqip={{ active: true, quality: 20, blur: 10 }}
+                className="w-[80%] mx-auto my-6"
+              />
             </div>
           </>
         )}

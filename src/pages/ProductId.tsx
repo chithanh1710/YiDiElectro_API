@@ -4,7 +4,7 @@ import { ListFeatureLuxuryCar } from "../components/FeatureLuxuryCar/ListFeature
 import { useSelector } from "react-redux";
 import { storeProps } from "../store";
 import { ProductDetails } from "../components/ProductDetails/ProductDetails";
-import { IKContext, IKImage } from "imagekitio-react";
+import { IKImage } from "imagekitio-react";
 import { useGetFullCarQuery } from "../services/carApi";
 import Err from "./Err";
 
@@ -47,13 +47,7 @@ export default function ProductId() {
           {isEnglish ? "Electric car" : "Xe điện"}
         </div>
         <div className="mt-10 flex justify-center relative">
-          <IKContext
-            publicKey="public_POLuSf/Qrn79R+Goy2t0JxWA6XM="
-            urlEndpoint="https://ik.imagekit.io/yidiElectro"
-            transformationPosition="path"
-          >
-            <IKImage path={data.img} />
-          </IKContext>
+          <IKImage path={data.img} />
         </div>
         <div className="mt-5 flex justify-between max-w-[500px] mx-auto">
           <div className="flex flex-col gap-1 justify-between items-center">

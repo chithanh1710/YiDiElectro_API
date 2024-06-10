@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 // import { listImg } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { storeProps } from "../../store";
-import { IKContext, IKImage } from "imagekitio-react";
+import { IKImage } from "imagekitio-react";
 
 export function HomeAbout() {
   const navigate = useNavigate();
@@ -11,17 +11,10 @@ export function HomeAbout() {
     <div className="container-width bg-gray-300">
       <div className="flex max-width-default mx-auto md:flex-row gap-4 md:gap-20 flex-col py-8">
         <div>
-          <IKContext
-            publicKey="public_POLuSf/Qrn79R+Goy2t0JxWA6XM="
-            urlEndpoint="https://ik.imagekit.io/yidiElectro"
-            transformationPosition="path"
-          >
-            <IKImage
-              path="/about.png"
-              loading="lazy"
-              className="w-full h-full object-cover rounded-md"
-            />
-          </IKContext>
+          <IKImage
+            path="/about.png"
+            className="w-full h-full object-cover rounded-md"
+          />
         </div>
         <div className="md:w-[80%] space-y-4 flex flex-col justify-center">
           <h2 className="text-4xl font-semibold">
