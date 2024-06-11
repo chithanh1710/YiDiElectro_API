@@ -1,17 +1,43 @@
 import { X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { storeProps } from "../../store";
-import { outSummit } from "../../layouts/User/AppSlice";
+import { outSummit, setForgotFalse } from "../../layouts/User/AppSlice";
 
 export function SummitForm() {
   const name = useSelector((store: storeProps) => store.app.name);
+  const isForgot = useSelector((store: storeProps) => store.app.isForgot);
   const isEnglish = useSelector(
     (store: storeProps) => store.app.lang === "English"
   );
   const dispatch = useDispatch();
   function handleOutSummit() {
     dispatch(outSummit());
+    dispatch(setForgotFalse());
   }
+
+  if (isForgot) {
+    return (
+      <div
+        onClick={handleOutSummit}
+        className="fixed flex justify-center items-center z-[9999999] bg-black/80 w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      >
+        <div className=" relative bg-white px-16 py-16 rounded-lg">
+          <h1 className="text-yellow-400 font-semibold">
+            {isEnglish
+              ? "Password has been sent to your email"
+              : "Mật khẩu đã được gửi vào email của bạn"}
+          </h1>
+          <button
+            onClick={handleOutSummit}
+            className="absolute  top-0 right-0 mr-3 mt-3"
+          >
+            <X className="h-7 w-7" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       onClick={handleOutSummit}

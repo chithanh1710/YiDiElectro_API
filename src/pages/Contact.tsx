@@ -11,6 +11,7 @@ import { URL_SERVER } from "../base/base";
 
 export default function Contact() {
   const dispatch = useDispatch();
+  const regex = /[a-zA-Z]/;
   const [newName, setNewName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -50,12 +51,17 @@ export default function Contact() {
             dispatch(setIsSubmit());
             dispatch(setName(newName));
             // Send Email
-            fetch(`${URL_SERVER}/send-email/${email}?name=${newName}`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            })
+            fetch(
+              `${URL_SERVER}/send-email/${email}?name=${
+                regex.test(newName) ? newName : "..."
+              }`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            )
               .then((response) => response.json())
               .then(() => {
                 console.log("Email sent successfully");

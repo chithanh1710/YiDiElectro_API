@@ -7,6 +7,7 @@ export interface appStoreProps {
   loadingSummit: boolean;
   lang: string;
   isLogged: boolean;
+  isForgot: boolean;
 }
 
 const initialState: appStoreProps = {
@@ -15,12 +16,19 @@ const initialState: appStoreProps = {
   loadingSummit: false,
   lang: "English",
   isLogged: false,
+  isForgot: false,
 };
 
 const AppSlice = createSlice({
   initialState,
   name: "app",
   reducers: {
+    setForgotTrue(state) {
+      state.isForgot = true;
+    },
+    setForgotFalse(state) {
+      state.isForgot = false;
+    },
     setLoadingSummitTrue(state) {
       state.loadingSummit = true;
     },
@@ -60,6 +68,8 @@ export const {
   setIsLoggedTrue,
   setLoadingSummitFalse,
   setLoadingSummitTrue,
+  setForgotFalse,
+  setForgotTrue,
 } = AppSlice.actions;
 
 export default AppSlice.reducer;
